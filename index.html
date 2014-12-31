@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>Spreedly PaymentFrame Hosted</title>
+
+  <style>
+
+    /* Basic Layout
+    ---------------------------------------------------------------- */
+
+    body {
+      background: #ebf1f5;
+      font-family: sans-serif;
+      font-size: 100%;
+      color: #555;
+    }
+    @media screen and (max-width: 400px) {
+      body {
+        font-size: 87.5%;
+      }
+    }
+
+    .spf-form {
+      display: block;
+      background: #fff;
+      box-shadow: rgba(0,0,0,.15) 0 2px 20px,
+                  rgba(0,0,0,.1) 0 0 3px;
+      border-radius: 6px;
+      min-width: 300px;
+      width: 50%;
+      max-width: 550px;
+      padding: 0;
+      margin: 2em auto;
+    }
+
+    fieldset {
+      border: none;
+      margin: 0;
+      padding: 6%;
+      border-bottom: 1px solid #d2d8dc;
+    }
+    .spf-fs-name {
+      padding-top: 2.5em;
+    }
+    .spf-field-submit {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 2.5em;
+    }
+
+    h2 {
+      font-weight: 100;
+      font-size: 1.35em;
+      color: #41637b;
+      margin-top: 0;
+    }
+
+    .spf-field {
+      float: left;
+      display: inline;
+      width: 100%;
+      margin-bottom: 1.5em;
+    }
+
+    label {
+      display: block;
+      margin-bottom: .25em;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .spf-label-secondary {
+      color: #999;
+      font-size: .8125em;
+      margin-top: .5em;
+    }
+  
+    .spf-input-text {
+      display: block;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      padding: .65em .5em;
+      font-size: 91%;
+      width: 92%;
+    }
+
+    /* Specific Fields
+    ---------------------------------------------------------------- */
+
+    /* Name */
+    .spf-fs-name .spf-field {
+      width: 47%;
+    }
+    .spf-fs-name .spf-field-lname {
+      float: right;
+      margin-right: 4%;
+    }
+
+    /* Address */
+    .spf-field-city {
+      float: left;
+      display: inline;
+      width: 45%;
+      margin-right: 2%;
+    }
+    .spf-field-state {
+      float: left;
+      display: inline;
+      width: 25%;
+      margin-right: 2%;
+    }
+    .spf-field-state .spf-input-text {
+      width: 86%;
+    }
+    .spf-field-postcode {
+      float: right;
+      display: inline;
+      width: 26%;
+    }
+    .spf-field-postcode .spf-input-text {
+      width: 68%;
+    }
+    .spf-field-country {
+      clear: both;
+    }
+    
+    /* Expiry Date */
+    #spf-exp-m,
+    #spf-exp-y {
+      width: 80%;
+    }
+    .spf-exp-divider {
+      font-size: 150%;
+      position: relative;
+      top: .15em;
+      margin-bottom: 2em;
+      margin-right: .5em;
+      float: left;
+    }
+    .spf-field-exp .spf-field-group {
+      float: left;
+      width: 30%;
+    }
+
+    #spf-cvv {
+      width: 30%;
+    }
+
+    /* Button */
+    .button {
+      display: inline-block;
+      border-radius: 3px;
+      background: #41637b;
+      color: #fff;
+      padding: .65em 2em;
+      font-size: 100%;
+      border: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background: #537e9d;
+    }
+    .button:active {
+      position: relative;
+      top: 1px;
+    }
+
+    
+
+  </style>
+</head>
+
+<body>
+  <form class="spf-form">
+    <fieldset class="spf-fs-name">
+      <h2>Name</h2>
+      <div class="spf-field spf-field-fname">
+        <label class="internal" for="spf-fname">First Name</label>
+        <input type="text" class="spf-input-text" id="spf-fname" aria-required="true" required>
+      </div>
+      <div class="spf-field spf-field-lname">
+        <label class="internal" for="spf-lname">Last Name</label>
+        <input type="text" class="spf-input-text" id="spf-lname" aria-required="true" required>
+      </div>
+    </fieldset>
+  
+    <fieldset class="spf-fs-address">
+      <h2>Billing Address</h2>
+      <div class="spf-field spf-field-street">
+        <label class="internal" for="spf-street">Street Address</label>
+        <input type="text" class="spf-input-text" id="spf-street" aria-required="true" required>
+      </div>
+      <div class="spf-field spf-field-street-2">
+        <label class="internal" for="spf-street-2">Street Address 2</label>
+        <input type="text" class="spf-input-text" id="spf-street-2">
+      </div>
+      <div class="spf-field spf-field-city">
+        <label class="internal" for="spf-city">City</label>
+        <input type="text" class="spf-input-text" id="spf-city" aria-required="true" required>
+      </div>
+      <div class="spf-field spf-field-state">
+        <label class="internal" for="spf-state">State</label>
+        <input type="text" class="spf-input-text" id="spf-state" aria-required="true" required>
+      </div>
+      <div class="spf-field spf-field-postcode">
+        <label class="internal" for="spf-postcode">Zip Code</label>
+        <input type="text" class="spf-input-text" id="spf-postcode" aria-required="true" required>
+      </div>
+      <div class="spf-field spf-field-country">
+        <label class="internal" for="spf-country">Country</label>
+        <input type="text" class="spf-input-text" id="spf-country" aria-required="true" required>
+      </div>
+    </fieldset>
+
+    <fieldset class="spf-fs-cc">
+      <h2>Payment Details</h2>
+      <div class="spf-field">
+        <label class="internal" for="spf-cc">Credit Card Number</label>
+        <input type="text" class="spf-input-text" id="spf-cc" aria-required="true" required>
+      </div>
+      <div class="spf-field spf-field-exp">
+        <label>Expiration Date</label>
+        <div class="spf-field-group">
+          <input type="text" class="spf-input-text" id="spf-exp-m" placeholder="MM" size="3" aria-required="true" required>
+          <label class="spf-label-secondary" for="spf-exp-m">Month (MM)</label>
+        </div>
+        <span class="spf-exp-divider">/</span>
+        <div class="spf-field-group">
+          <input type="text" class="spf-input-text" id="spf-exp-y" placeholder="YY" size="3" aria-required="true" required>
+          <label class="spf-label-secondary" for="spf-exp-y">Year (YY)</label>
+        </div>
+      </div>
+      <div class="spf-field">
+        <label class="internal" for="spf-cvv">CVV</label>
+        <input type="text" class="spf-input-text" id="spf-cvv" size="3" aria-required="true" required>
+      </div>
+    </fieldset>
+
+    <fieldset class="spf-field-submit">
+      <input type="submit" class="button" value="Submit Payment">
+    </fieldset>
+  </form>
+</body>
+</html>
