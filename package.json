@@ -9,6 +9,9 @@
   "scripts": {
     "start": "static ."
   },
+  "engines": {
+    "node": "0.10.x"
+  },
   "dependencies": {
     "node-static": "^0.7.6"
   },
