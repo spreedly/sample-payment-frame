@@ -3,245 +3,175 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-
-  <title>Spreedly PaymentFrame Hosted</title>
-
-  <style>
-
-    /* Basic Layout
-    ---------------------------------------------------------------- */
-
-    body {
-      background: #ebf1f5;
-      font-family: sans-serif;
-      font-size: 100%;
-      color: #555;
-    }
-    @media screen and (max-width: 400px) {
-      body {
-        font-size: 87.5%;
-      }
-    }
-
-    .spf-form {
-      display: block;
-      background: #fff;
-      box-shadow: rgba(0,0,0,.15) 0 2px 20px,
-                  rgba(0,0,0,.1) 0 0 3px;
-      border-radius: 6px;
-      min-width: 300px;
-      width: 50%;
-      max-width: 550px;
-      padding: 0;
-      margin: 2em auto;
-    }
-
-    fieldset {
-      border: none;
-      margin: 0;
-      padding: 6%;
-      border-bottom: 1px solid #d2d8dc;
-    }
-    .spf-fs-name {
-      padding-top: 2.5em;
-    }
-    .spf-field-submit {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 2.5em;
-    }
-
-    h2 {
-      font-weight: 100;
-      font-size: 1.35em;
-      color: #41637b;
-      margin-top: 0;
-    }
-
-    .spf-field {
-      float: left;
-      display: inline;
-      width: 100%;
-      margin-bottom: 1.5em;
-    }
-
-    label {
-      display: block;
-      margin-bottom: .25em;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    .spf-label-secondary {
-      color: #999;
-      font-size: .8125em;
-      margin-top: .5em;
-    }
-  
-    .spf-input-text {
-      display: block;
-      border-radius: 3px;
-      border: 1px solid #ccc;
-      padding: .65em .5em;
-      font-size: 91%;
-      width: 92%;
-    }
-
-    /* Specific Fields
-    ---------------------------------------------------------------- */
-
-    /* Name */
-    .spf-fs-name .spf-field {
-      width: 47%;
-    }
-    .spf-fs-name .spf-field-lname {
-      float: right;
-      margin-right: 4%;
-    }
-
-    /* Address */
-    .spf-field-city {
-      float: left;
-      display: inline;
-      width: 45%;
-      margin-right: 2%;
-    }
-    .spf-field-state {
-      float: left;
-      display: inline;
-      width: 25%;
-      margin-right: 2%;
-    }
-    .spf-field-state .spf-input-text {
-      width: 86%;
-    }
-    .spf-field-postcode {
-      float: right;
-      display: inline;
-      width: 26%;
-    }
-    .spf-field-postcode .spf-input-text {
-      width: 68%;
-    }
-    .spf-field-country {
-      clear: both;
-    }
-    
-    /* Expiry Date */
-    #spf-exp-m,
-    #spf-exp-y {
-      width: 80%;
-    }
-    .spf-exp-divider {
-      font-size: 150%;
-      position: relative;
-      top: .15em;
-      margin-bottom: 2em;
-      margin-right: .5em;
-      float: left;
-    }
-    .spf-field-exp .spf-field-group {
-      float: left;
-      width: 30%;
-    }
-
-    #spf-cvv {
-      width: 30%;
-    }
-
-    /* Button */
-    .button {
-      display: inline-block;
-      border-radius: 3px;
-      background: #41637b;
-      color: #fff;
-      padding: .65em 2em;
-      font-size: 100%;
-      border: none;
-      cursor: pointer;
-    }
-    .button:hover {
-      background: #537e9d;
-    }
-    .button:active {
-      position: relative;
-      top: 1px;
-    }
-
-    
-
-  </style>
+  <title>Spreedly Sample iFrame Payment Page</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="https://core.spreedly.com/payment-frame/payment-frame-0.2.0.min.js"></script>
 </head>
 
 <body>
-  <form class="spf-form">
+
+  <form id="payment-form" accept-charset="UTF-8" class="spf-form" method="POST"
+    action="#" onsubmit="submitPaymentForm(); return false;">
+
+    <input type="hidden" name="payment_method_token" id="payment_method_token" value="" />
+
     <fieldset class="spf-fs-name">
       <h2>Name</h2>
       <div class="spf-field spf-field-fname">
         <label class="internal" for="spf-fname">First Name</label>
-        <input type="text" class="spf-input-text" id="spf-fname" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="first_name">
       </div>
       <div class="spf-field spf-field-lname">
         <label class="internal" for="spf-lname">Last Name</label>
-        <input type="text" class="spf-input-text" id="spf-lname" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="last_name">
       </div>
     </fieldset>
-  
+
     <fieldset class="spf-fs-address">
       <h2>Billing Address</h2>
       <div class="spf-field spf-field-street">
         <label class="internal" for="spf-street">Street Address</label>
-        <input type="text" class="spf-input-text" id="spf-street" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="address1">
       </div>
       <div class="spf-field spf-field-street-2">
-        <label class="internal" for="spf-street-2">Street Address 2</label>
-        <input type="text" class="spf-input-text" id="spf-street-2">
+        <input type="text" class="spf-input-text" id="address2">
       </div>
       <div class="spf-field spf-field-city">
         <label class="internal" for="spf-city">City</label>
-        <input type="text" class="spf-input-text" id="spf-city" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="city">
       </div>
       <div class="spf-field spf-field-state">
         <label class="internal" for="spf-state">State</label>
-        <input type="text" class="spf-input-text" id="spf-state" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="state">
       </div>
       <div class="spf-field spf-field-postcode">
         <label class="internal" for="spf-postcode">Zip Code</label>
-        <input type="text" class="spf-input-text" id="spf-postcode" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="zip">
       </div>
       <div class="spf-field spf-field-country">
         <label class="internal" for="spf-country">Country</label>
-        <input type="text" class="spf-input-text" id="spf-country" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="country">
       </div>
     </fieldset>
 
     <fieldset class="spf-fs-cc">
       <h2>Payment Details</h2>
-      <div class="spf-field">
-        <label class="internal" for="spf-cc">Credit Card Number</label>
-        <input type="text" class="spf-input-text" id="spf-cc" aria-required="true" required>
+
+      <div id='frame-holder' style="height: 5em; visibility: hidden;">
+        <iframe id="spreedly-iframe" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
       </div>
-      <div class="spf-field spf-field-exp">
-        <label>Expiration Date</label>
-        <div class="spf-field-group">
-          <input type="text" class="spf-input-text" id="spf-exp-m" placeholder="MM" size="3" aria-required="true" required>
-          <label class="spf-label-secondary" for="spf-exp-m">Month (MM)</label>
-        </div>
-        <span class="spf-exp-divider">/</span>
-        <div class="spf-field-group">
-          <input type="text" class="spf-input-text" id="spf-exp-y" placeholder="YY" size="3" aria-required="true" required>
-          <label class="spf-label-secondary" for="spf-exp-y">Year (YY)</label>
-        </div>
+
+      <!-- <div class="spf-field">
+        <label class="internal" for="spf-cc">Credit Card Number</label>
+        <input type="text" size="19" class="spf-input-text" id="spf-cc">
       </div>
       <div class="spf-field">
         <label class="internal" for="spf-cvv">CVV</label>
-        <input type="text" class="spf-input-text" id="spf-cvv" size="3" aria-required="true" required>
+        <input type="text" class="spf-input-text" id="spf-cvv" size="3">
+      </div> -->
+
+      <div class="spf-field spf-field-exp">
+        <label>Expiration Date</label>
+        <div class="spf-field-group spf-month">
+          <input type="text" class="spf-input-text spf-exp" id="month" size="3" maxlength="2" placeholder="MM">
+          <!-- <label class="spf-label-secondary" for="spf-exp-m">Month (MM)</label> -->
+        </div>
+        <span class="spf-exp-divider">/</span>
+        <div class="spf-field-group spf-year">
+          <input type="text" class="spf-input-text spf-exp" id="year" size="5" maxlength="4" placeholder="YYYY">
+          <!-- <label class="spf-label-secondary" for="spf-exp-y">Year (YYYY)</label> -->
+        </div>
       </div>
     </fieldset>
 
     <fieldset class="spf-field-submit">
       <input type="submit" class="button" value="Submit Payment">
+      <span id="message"></span>
+      <span id="errors"></span>
     </fieldset>
   </form>
+
+  <script>
+    var spreedlyPaymentFrame = new Spreedly.PaymentFrame("5WtRCxOhabLibNkQjnxIiXfzA8V");
+
+    spreedlyPaymentFrame.on('paymentMethod', function(token, pmData) {
+      var tokenField = document.getElementById("payment_method_token");
+      tokenField.setAttribute("value", token);
+      var masterForm = document.getElementById('payment-form');
+
+      // Normally would now submit the form..
+      // masterForm.submit();
+
+      // For demonstration purposes just display the token
+      var messageEl = document.getElementById('message');
+      messageEl.innerHTML = "Success! The returned payment method token is: " + token;
+    });
+
+    spreedlyPaymentFrame.on('errors', function(errors) {
+      var messageEl = document.getElementById('errors');
+      var errorBorder = "1px solid red";
+      for(var i = 0; i < errors.length; i++) {
+        var error = errors[i];
+        if(error["attribute"]) {
+          var masterFormElement = document.getElementById(error["attribute"]);
+          if(masterFormElement) {
+            masterFormElement.style.border = errorBorder
+          } else {
+            spreedlyPaymentFrame.setStyle('input#spf-' + error["attribute"], "border: " + errorBorder + ";");
+          }
+        }
+        messageEl.innerHTML += error["message"] + "<br/>";
+      }
+    });
+
+    spreedlyPaymentFrame.on('config', function(frame) {
+      frame.setStyle('body', 'margin: 0px;');
+      frame.setStyle('.spf-fields', 'width: 94%');
+      frame.setStyle('.spf-field.spf-number', 'float: left; display: inline-block; margin-right: 2%; width: 70%');
+      frame.setStyle('.spf-field.spf-verification_value', 'float: left; display: inline-block; margin-right: 2%; width: 25%');
+      frame.setStyle('label', 'display: block; font-family: sans-serif; font-size: 100%; color: #555; margin-bottom: 0.25em;');
+      frame.setStyle('input#spf-number', 'border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; width: 90%;');
+      frame.setStyle('input#spf-verification_value', 'border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; width: 85%;');
+
+      frame.setText('label[for="spf-cc"]', 'Credit Card Number');
+      frame.setText('label[for="spf-exp-cvv"]', 'CVV');
+    });
+
+    spreedlyPaymentFrame.on('ready', function() {
+      document.getElementById("frame-holder").style.visibility = 'visible';
+    });
+
+    spreedlyPaymentFrame.bind(document.getElementById('spreedly-iframe'));
+
+    function submitPaymentForm() {
+
+      var normalBorder = "1px solid #ccc";
+
+      // These are the fields whose values we want to transfer *from* the
+      // master form *to* the payment frame form.
+      var paymentMethodFields = ['first_name', 'last_name', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'month', 'year']
+      for(var i = 0; i < paymentMethodFields.length; i++) {
+        var field = paymentMethodFields[i];
+
+        // Reset existing styles (to clear previous errors)
+        var fieldEl = document.getElementById(field);
+        fieldEl.style.border = normalBorder;
+
+        // Set on frame
+        spreedlyPaymentFrame.setParam(field, fieldEl.value)
+      }
+
+      // Reset frame styles
+      spreedlyPaymentFrame.setStyle('input#spf-number', "border: " + normalBorder + ";");
+      spreedlyPaymentFrame.setStyle('input#spf-verification_value', "border: " + normalBorder + ";");
+
+      // Reset previous messages
+      document.getElementById('errors').innerHTML = "";
+      document.getElementById('message').innerHTML = "";
+
+      // Tokenize!
+      spreedlyPaymentFrame.submit();
+    }
+  </script>
 </body>
 </html>

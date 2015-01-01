@@ -1,0 +1,181 @@
+/* Basic Layout
+---------------------------------------------------------------- */
+
+body {
+  background: #ebf1f5;
+  font-family: sans-serif;
+  font-size: 100%;
+  color: #555;
+}
+@media screen and (max-width: 400px) {
+  body {
+    font-size: 87.5%;
+  }
+}
+
+.spf-form {
+  display: block;
+  background: #fff;
+  box-shadow: rgba(0,0,0,.15) 0 2px 20px,
+  rgba(0,0,0,.1) 0 0 3px;
+  border-radius: 6px;
+  min-width: 300px;
+  width: 50%;
+  max-width: 550px;
+  padding: 0;
+  margin: 2em auto;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 6%;
+  border-bottom: 1px solid #d2d8dc;
+}
+.spf-fs-name {
+  padding-top: 2.5em;
+}
+.spf-field-submit {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 2.5em;
+}
+
+h2 {
+  font-weight: 100;
+  font-size: 1.35em;
+  color: #41637b;
+  margin-top: 0;
+}
+
+.spf-field {
+  float: left;
+  display: inline;
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+
+label {
+  display: block;
+  margin-bottom: .25em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.spf-label-secondary {
+  color: #999;
+  font-size: .8125em;
+  margin-top: .5em;
+}
+
+.spf-input-text {
+  display: block;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding: .65em .5em;
+  font-size: 91%;
+  width: 92%;
+}
+
+/* Specific Fields
+---------------------------------------------------------------- */
+
+/* Name */
+.spf-fs-name .spf-field {
+  width: 47%;
+}
+.spf-fs-name .spf-field-lname {
+  float: right;
+  margin-right: 4%;
+}
+
+/* Address */
+.spf-field-city {
+  float: left;
+  display: inline;
+  width: 45%;
+  margin-right: 2%;
+}
+.spf-field-state {
+  float: left;
+  display: inline;
+  width: 25%;
+  margin-right: 2%;
+}
+.spf-field-state .spf-input-text {
+  width: 86%;
+}
+.spf-field-postcode {
+  float: right;
+  display: inline;
+  width: 26%;
+}
+.spf-field-postcode .spf-input-text {
+  width: 68%;
+}
+.spf-field-country {
+  clear: both;
+}
+
+/* Expiry Date */
+input.spf-exp {
+  width: 90%;
+}
+
+.spf-exp-divider {
+  font-size: 150%;
+  position: relative;
+  top: .15em;
+  margin-right: .4em;
+  margin-left: .5em;
+  float: left;
+}
+
+.spf-field-group.spf-month {
+  float: left;
+  width: 20%;
+}
+
+.spf-field-group.spf-year {
+  float: left;
+  width: 30%;
+}
+
+#spf-cvv {
+  width: 30%;
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  border-radius: 3px;
+  background: #41637b;
+  color: #fff;
+  padding: .65em 2em;
+  font-size: 100%;
+  border: none;
+  cursor: pointer;
+}
+.button:hover {
+  background: #537e9d;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+/* Message */
+
+#errors {
+  color: red;
+  font-size: 80%;
+  float: right;
+  width: 55%;
+}
+
+#message {
+  color: green;
+  font-size: 80%;
+  float: right;
+  width: 55%;
+}

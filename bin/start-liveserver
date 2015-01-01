@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+var liveServer = require("../node_modules/live-server/index");
+liveServer.start(process.env.PORT, process.argv[2], true);

@@ -1,0 +1,16 @@
+{
+  "name": "sample-payment-frame",
+  "version": "0.0.1",
+  "description": "Sample app showing how to use the Spreedly iFrame payment form",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spreedly/sample-payment-frame.git"
+  },
+  "scripts": {
+    "start": "static ."
+  },
+  "dependencies": {
+    "node-static": "^0.7.6"
+  },
+  "author": "Ryan Daigle"
+}
