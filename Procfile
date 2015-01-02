@@ -1,1 +1,1 @@
-web: static -p $PORT .
+web: bin/start_nginx

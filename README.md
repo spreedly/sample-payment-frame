@@ -4,4 +4,4 @@ An example implementation of a payment page using the Spreedly iFrame payment co
 
 All logic is contained in `index.html`.
 
-You can (soon) see this form live at [https://spreedly-payment-frame.herokuapp.com](https://spreedly-payment-frame.herokuapp.com)
+You can see this form live at [https://spreedly-payment-frame.herokuapp.com](https://spreedly-payment-frame.herokuapp.com)

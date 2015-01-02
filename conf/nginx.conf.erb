@@ -1,0 +1,45 @@
+worker_processes  4;
+daemon off;
+
+events {
+  worker_connections  1024;
+}
+
+http {
+
+  include            mime.types;
+  default_type       application/octet-stream;
+
+  sendfile           on;
+  keepalive_timeout  65;
+
+  port_in_redirect   off;
+
+  # These are piped to STDOUT by the start_nginx script (created by the buildpack)
+  error_log          logs/error.log;
+  access_log         logs/access.log;
+
+  server {
+
+    listen           <%= ENV['PORT'] %>;
+    server_name      <%= ENV['HOST'] || 'localhost' %>;
+
+    index            index.html;
+
+    gzip_static      on;
+    gzip_proxied     any;
+    gzip_disable     "msie6";
+
+    add_header       Vary Accept-Encoding;
+    add_header       Cache-Control public;
+
+    # Generated site at "public" root dir
+    location / {
+      root           /app/;
+      autoindex      off;
+      # expires        <%= ENV['DEFAULT_TTL'] || 3600 %>s;
+      expires max;
+      try_files      $uri $uri/ $uri.html index.html;
+    }
+  }
+}
