@@ -1,27 +1,26 @@
 /* Basic Layout
 ---------------------------------------------------------------- */
-
+* {
+  box-sizing: border-box;
+}
+  
 body {
   background: #ebf1f5;
   font-family: sans-serif;
   font-size: 100%;
   color: #555;
-}
-@media screen and (max-width: 400px) {
-  body {
-    font-size: 87.5%;
-  }
+  margin: 0;
+  padding: 0;
 }
 
 .spf-form {
-  display: block;
   background: #fff;
   box-shadow: rgba(0,0,0,.15) 0 2px 20px,
-  rgba(0,0,0,.1) 0 0 3px;
+              rgba(0,0,0,.1) 0 0 3px;
   border-radius: 6px;
-  min-width: 300px;
-  width: 50%;
+  min-width: 320px;
   max-width: 550px;
+  width: 60%;
   padding: 0;
   margin: 2em auto;
 }
@@ -29,12 +28,10 @@ body {
 fieldset {
   border: none;
   margin: 0;
-  padding: 6%;
+  padding: 3em 1em 2em;
   border-bottom: 1px solid #d2d8dc;
 }
-.spf-fs-name {
-  padding-top: 2.5em;
-}
+
 .spf-field-submit {
   border-bottom: none;
   margin-bottom: 0;
@@ -49,8 +46,7 @@ h2 {
 }
 
 .spf-field {
-  float: left;
-  display: inline;
+  display: inline-block;
   width: 100%;
   margin-bottom: 1.5em;
 }
@@ -70,88 +66,78 @@ label {
 
 .spf-input-text {
   display: block;
+  width: 100%;
   border-radius: 3px;
   border: 1px solid #ccc;
   padding: .65em .5em;
   font-size: 91%;
-  width: 92%;
 }
+
 
 /* Specific Fields
 ---------------------------------------------------------------- */
 
 /* Name */
+
 .spf-fs-name .spf-field {
-  width: 47%;
+  width: 46%;
+  margin-right: 2%;
 }
-.spf-fs-name .spf-field-lname {
-  float: right;
-  margin-right: 4%;
+
+.spf-field-lname {
+  margin-right: 0;
 }
 
 /* Address */
+
 .spf-field-city {
-  float: left;
-  display: inline;
-  width: 45%;
+  width: 41%;
   margin-right: 2%;
 }
+
 .spf-field-state {
-  float: left;
-  display: inline;
-  width: 25%;
+  width: 15%;
   margin-right: 2%;
 }
-.spf-field-state .spf-input-text {
-  width: 86%;
-}
+
 .spf-field-postcode {
-  float: right;
-  display: inline;
-  width: 26%;
+  width: 25%;
 }
-.spf-field-postcode .spf-input-text {
-  width: 68%;
-}
-.spf-field-country {
-  clear: both;
-}
+
 
 /* Expiry Date */
-input.spf-exp {
-  width: 90%;
+
+.spf-field-group {
+  display: inline-block;
 }
 
-.spf-exp-divider {
-  font-size: 150%;
-  position: relative;
-  top: .15em;
-  margin-right: .4em;
-  margin-left: .5em;
-  float: left;
-}
-
-.spf-field-group.spf-month {
-  float: left;
+.spf-month {
   width: 20%;
 }
 
-.spf-field-group.spf-year {
-  float: left;
+.spf-year {
   width: 30%;
 }
 
-#spf-cvv {
-  width: 30%;
+.spf-exp-divider {
+  display: inline-block;
+  margin: 0 .4em;
+  font-size: 150%;
+  line-height: 1.5;
+  position: relative;
+  top: .2em;
 }
+
 
 /* Button */
+
 .button {
   display: inline-block;
+  width: 100%;
   border-radius: 3px;
   background: #41637b;
   color: #fff;
-  padding: .65em 2em;
+  padding: .75em 2em;
   font-size: 100%;
   border: none;
   cursor: pointer;
@@ -166,16 +152,27 @@ input.spf-exp {
 
 /* Message */
 
-#errors {
+#errors,
+#message {
   color: red;
-  font-size: 80%;
-  float: right;
-  width: 55%;
+  margin: 1em 0;
+  line-height: 1.5;
 }
 
 #message {
   color: green;
-  font-size: 80%;
-  float: right;
-  width: 55%;
+}
+
+
+/* Small Screen Modifications*/
+
+@media screen and (max-width: 400px) {
+  .spf-form {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 625px) {
+  .spf-form {
+    width: 80%;
+  }
 }

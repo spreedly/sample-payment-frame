@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -77,8 +77,8 @@
 
     <fieldset class="spf-field-submit">
       <input type="submit" class="button" value="Submit Payment">
-      <span id="message"></span>
-      <span id="errors"></span>
+      <div id="message"></div>
+      <div id="errors"></div>
     </fieldset>
   </form>
 
@@ -116,13 +116,13 @@
     });
 
     spreedlyPaymentFrame.on('config', function(frame) {
-      frame.setStyle('body', 'margin: 0px;');
-      frame.setStyle('.spf-fields', 'width: 94%');
-      frame.setStyle('.spf-field.spf-number', 'float: left; display: inline-block; margin-right: 2%; width: 70%');
-      frame.setStyle('.spf-field.spf-verification_value', 'float: left; display: inline-block; margin-right: 2%; width: 25%');
+      frame.setStyle('*', 'box-sizing: border-box');
+      frame.setStyle('body', 'margin: 0; padding: 0');
+      frame.setStyle('.spf-field.spf-number',             'display: inline-block; width: 67%; margin-right: 1%');
+      frame.setStyle('.spf-field.spf-verification_value', 'display: inline-block; width: 30%');
       frame.setStyle('label', 'display: block; font-family: sans-serif; font-size: 100%; color: #555; margin-bottom: 0.25em;');
-      frame.setStyle('input#spf-number', 'border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; width: 90%;');
-      frame.setStyle('input#spf-verification_value', 'border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%; width: 85%;');
+      frame.setStyle('input#spf-number',             'width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
+      frame.setStyle('input#spf-verification_value', 'width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
 
       frame.setText('label[for="spf-number"]', 'Credit Card Number');
       frame.setText('label[for="spf-verification_value"]', 'CVV');
