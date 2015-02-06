@@ -27,6 +27,8 @@
       </div>
     </fieldset>
 
+    <!-- If you want billing address, uncomment -->
+    <!--
     <fieldset class="spf-fs-address">
       <h2>Billing Address</h2>
       <div class="spf-field spf-field-street">
@@ -53,6 +55,7 @@
         <input type="text" class="spf-input-text" id="country">
       </div>
     </fieldset>
+    -->
 
     <fieldset class="spf-fs-cc">
       <h2>Payment Details</h2>
@@ -139,8 +142,10 @@
       var normalBorder = "1px solid #ccc";
 
       // These are the fields whose values we want to transfer *from* the
-      // master form *to* the payment frame form.
-      var paymentMethodFields = ['first_name', 'last_name', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'month', 'year']
+      // master form *to* the payment frame form. Add the following if
+      // you're displaying the address:
+      // ['address1', 'address2', 'city', 'state', 'zip', 'country']
+      var paymentMethodFields = ['first_name', 'last_name', 'month', 'year']
       for(var i = 0; i < paymentMethodFields.length; i++) {
         var field = paymentMethodFields[i];
 
