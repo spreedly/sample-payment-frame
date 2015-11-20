@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Spreedly Sample iFrame Payment Page</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <script src="https://core.spreedly.com/payment-frame/payment-frame-0.5.min.js"></script>
+  <script src="https://core.spreedly.com/iframe/iframe-1.1.min.js"></script>
 </head>
 
 <body>
@@ -60,8 +60,13 @@
     <fieldset class="spf-fs-cc">
       <h2>Payment Details</h2>
 
-      <div id='frame-holder' style="height: 5em; visibility: hidden;">
-        <iframe id="spreedly-iframe" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
+      <div class="spf-field">
+        <label class="spf-field-group spf-number">Credit Card Number</label>
+        <label class="spf-field-group spf-verification_value">CVV</label>
+        <div id="spreedly-number-test" class="spf-field-group spf-number spf-field-cc">
+        </div>
+        <div id="spreedly-cvv-test" class="spf-field-group spf-verification_value spf-field-cc">
+        </div>
       </div>
 
       <div class="spf-field spf-field-exp">
@@ -83,12 +88,19 @@
       <div id="message"></div>
       <div id="errors"></div>
     </fieldset>
+
+    <script
+      id="spreedly-iframe"
+      data-environment-key="TbWAYgG7qaagGBh7hPjXQxS4DM4"
+      data-number-id="spreedly-number-test"
+      data-cvv-id="spreedly-cvv-test">
+    </script>
   </form>
 
   <script>
-    var spreedlyPaymentFrame = new Spreedly.PaymentFrame("5WtRCxOhabLibNkQjnxIiXfzA8V");
+    Spreedly.init();
 
-    spreedlyPaymentFrame.on('paymentMethod', function(token, pmData) {
+    Spreedly.on('paymentMethod', function(token, pmData) {
       var tokenField = document.getElementById("payment_method_token");
       tokenField.setAttribute("value", token);
       var masterForm = document.getElementById('payment-form');
@@ -101,7 +113,7 @@
       messageEl.innerHTML = "Success! The returned payment method token is: " + token;
     });
 
-    spreedlyPaymentFrame.on('errors', function(errors) {
+    Spreedly.on('errors', function(errors) {
       var messageEl = document.getElementById('errors');
       var errorBorder = "1px solid red";
       for(var i = 0; i < errors.length; i++) {
@@ -111,31 +123,19 @@
           if(masterFormElement) {
             masterFormElement.style.border = errorBorder
           } else {
-            spreedlyPaymentFrame.setStyle('input#spf-' + error["attribute"], "border: " + errorBorder + ";");
+            Spreedly.setStyle(error["attribute"], "border: " + errorBorder + ";");
           }
         }
         messageEl.innerHTML += error["message"] + "<br/>";
       }
     });
 
-    spreedlyPaymentFrame.on('config', function(frame) {
-      frame.setStyle('*', 'box-sizing: border-box');
-      frame.setStyle('body', 'margin: 0; padding: 0');
-      frame.setStyle('.spf-field.spf-number',             'display: inline-block; width: 67%; margin-right: 1%');
-      frame.setStyle('.spf-field.spf-verification_value', 'display: inline-block; width: 30%');
-      frame.setStyle('label', 'display: block; font-family: sans-serif; font-size: 100%; color: #555; margin-bottom: 0.25em;');
-      frame.setStyle('input#spf-number',             'width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
-      frame.setStyle('input#spf-verification_value', 'width: 100%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
-
-      frame.setText('label[for="spf-number"]', 'Credit Card Number');
-      frame.setText('label[for="spf-verification_value"]', 'CVV');
+    Spreedly.on('ready', function(frame) {
+      Spreedly.setStyle('number','width: 67%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
+      Spreedly.setStyle('cvv', 'width: 30%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
     });
 
-    spreedlyPaymentFrame.on('ready', function() {
-      document.getElementById("frame-holder").style.visibility = 'visible';
-    });
 
-    spreedlyPaymentFrame.bind(document.getElementById('spreedly-iframe'));
 
     function submitPaymentForm() {
 
@@ -154,19 +154,19 @@
         fieldEl.style.border = normalBorder;
 
         // Set on frame
-        spreedlyPaymentFrame.setParam(field, fieldEl.value)
+        Spreedly.tokenSetParam(field, fieldEl.value)
       }
 
       // Reset frame styles
-      spreedlyPaymentFrame.setStyle('input#spf-number', "border: " + normalBorder + ";");
-      spreedlyPaymentFrame.setStyle('input#spf-verification_value', "border: " + normalBorder + ";");
+      Spreedly.setStyle('number', "border: " + normalBorder + ";");
+      Spreedly.setStyle('cvv', "border: " + normalBorder + ";");
 
       // Reset previous messages
       document.getElementById('errors').innerHTML = "";
       document.getElementById('message').innerHTML = "";
 
       // Tokenize!
-      spreedlyPaymentFrame.submit();
+      Spreedly.tokenizeCreditCard();
     }
   </script>
 </body>

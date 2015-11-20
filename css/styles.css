@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
 }
-  
+
 body {
   background: #ebf1f5;
   font-family: sans-serif;
@@ -102,6 +102,19 @@ label {
 
 .spf-field-postcode {
   width: 25%;
+}
+
+/* Iframe divs */
+.spf-field-cc{
+  height:50px;
+}
+
+.spf-number{
+  width:67%;
+}
+
+.spf-verification_value{
+  width:30%;
 }
 
 
