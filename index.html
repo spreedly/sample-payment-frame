@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Spreedly Sample iFrame Payment Page</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <script src="https://core.spreedly.com/iframe/iframe-1.1.min.js"></script>
+  <script src="https://core.spreedly.com/iframe/iframe-1.2.min.js"></script>
 </head>
 
 <body>
@@ -146,6 +146,7 @@
       // you're displaying the address:
       // ['address1', 'address2', 'city', 'state', 'zip', 'country']
       var paymentMethodFields = ['first_name', 'last_name', 'month', 'year']
+      options = {};
       for(var i = 0; i < paymentMethodFields.length; i++) {
         var field = paymentMethodFields[i];
 
@@ -153,8 +154,8 @@
         var fieldEl = document.getElementById(field);
         fieldEl.style.border = normalBorder;
 
-        // Set on frame
-        Spreedly.tokenSetParam(field, fieldEl.value)
+        // add value to options
+        options[field]  = fieldEl.value
       }
 
       // Reset frame styles
@@ -166,7 +167,7 @@
       document.getElementById('message').innerHTML = "";
 
       // Tokenize!
-      Spreedly.tokenizeCreditCard();
+      Spreedly.tokenizeCreditCard(options);
     }
   </script>
 </body>
