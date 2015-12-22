@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <title>Spreedly Sample iFrame Payment Page</title>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <script src="https://core.spreedly.com/iframe/iframe-1.2.min.js"></script>
+  <script src="https://core.spreedly.com/iframe/iframe-1.3.min.js"></script>
 </head>
 
 <body>
@@ -131,6 +131,8 @@
     });
 
     Spreedly.on('ready', function(frame) {
+      Spreedly.setFieldType('text')
+      Spreedly.setNumberFormat('prettyFormat');
       Spreedly.setStyle('number','width: 67%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
       Spreedly.setStyle('cvv', 'width: 30%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
     });
