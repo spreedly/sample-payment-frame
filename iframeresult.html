@@ -1,0 +1,28 @@
+<html>
+<body>
+  <h3>Submitted parameters</h3>
+
+  <ul id="parameters">
+  </ul>
+  <br/>
+  <a href="/examples/hostedfields.html">Back to Hosted Fields</a>
+
+
+  <script>
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  var params = ['payment_method_token']
+  var ul = document.getElementById('parameters');
+  for(var i = 0; i < params.length; i++) {
+    li = document.createElement('li');
+    var param = params[i];
+    li.innerHTML = param + ': ' + getParameterByName(param);
+    ul.appendChild(li);
+  }
+  </script>
+</body>
+</html>
