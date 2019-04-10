@@ -131,16 +131,29 @@
     });
 
     Spreedly.on('ready', function(frame) {
-      Spreedly.setFieldType('text')
-      Spreedly.setNumberFormat('prettyFormat');
+      Spreedly.setFieldType('number', 'text');
+      Spreedly.setFieldType('cvv', 'text');
+      Spreedly.setNumberFormat('maskedFormat');
       Spreedly.setStyle('number','width: 67%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
       Spreedly.setStyle('cvv', 'width: 30%; border-radius: 3px; border: 1px solid #ccc; padding: .65em .5em; font-size: 91%;');
     });
 
-
+    Spreedly.on('fieldEvent', function(name, event, activeElement, inputData) {
+      if (event == 'input') {
+        if (inputData["validCvv"]){
+          Spreedly.setStyle('cvv', "background-color: #CDFFE6;")
+        } else {
+          Spreedly.setStyle('cvv', "background-color: #FFFFFF;")
+        }
+        if (inputData["validNumber"]){
+          Spreedly.setStyle('number', "background-color: #CDFFE6;")
+        } else {
+          Spreedly.setStyle('number', "background-color: #FFFFFF;")
+        }
+      }
+    });
 
     function submitPaymentForm() {
-
       var normalBorder = "1px solid #ccc";
 
       // These are the fields whose values we want to transfer *from* the
