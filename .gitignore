@@ -1,1 +1,7 @@
 node_modules
+*.log
+*.swp
+.DS_Store
+npm-debug*
+.cache
+.sass-cache
