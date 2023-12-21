@@ -23,6 +23,7 @@ http {
 
     listen           <%= ENV['PORT'] %>;
     server_name      <%= ENV['HOST'] || 'localhost' %>;
+    server_tokens    off;
 
     index            index.html;
 
