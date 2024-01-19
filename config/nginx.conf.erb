@@ -35,8 +35,8 @@ http {
   default_type       application/octet-stream;
   sendfile           on;
 
-	client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 65 %>;
-	# Must read the body in 65 seconds.
+	client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 10 %>;
+	# Must read the body in 10 seconds.
 
   port_in_redirect   off;
 
