@@ -10,10 +10,9 @@
     "start": "static ."
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "^16.15.0"
   },
   "dependencies": {
-    "node-static": "^0.7.6"
-  },
-  "author": "Ryan Daigle"
+    "node-static": "^0.7.11"
+  }
 }

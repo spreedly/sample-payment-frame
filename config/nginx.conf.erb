@@ -1,0 +1,73 @@
+# much of this config from heroku-community/nginx repo
+
+daemon off;
+# Heroku dynos have at least 4 cores.
+
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
+# Heroku dynos have at least 4 cores.
+
+pid /app/nginx.pid;
+# /app is $HOME & working directory of Heroku dyno
+
+error_log stderr info;
+# As documented for Nginx, but we still see error during start-up in log:
+# >  nginx: [alert] could not open error log file: open() "./logs/error.log"
+
+events {
+	use epoll;
+	accept_mutex on;
+	worker_connections <%= ENV['NGINX_WORKER_CONNECTIONS'] || 1024 %>;
+}
+
+http {
+	gzip on;
+	gzip_comp_level 2;
+	gzip_min_length 512;
+	gzip_proxied any; # Heroku router sends Via header
+
+  server_tokens      off;
+
+  log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
+	access_log /dev/stdout l2met;
+	# Remote IP, request path, HTTP status, & timestamp are all logged by Heroku Router, so not useful to include here.
+
+  include            mime.types;
+  default_type       application/octet-stream;
+  sendfile           on;
+
+	client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 65 %>;
+	# Must read the body in 65 seconds.
+
+  port_in_redirect   off;
+
+  server {
+
+    listen           <%= ENV['PORT'] %>;
+    server_name      <%= ENV['HOST'] || 'localhost' %>;
+    keepalive_timeout 25;
+
+    ## HTTPS Only
+		if ($http_x_forwarded_proto != "https") {
+			return 301 https://$host$request_uri;
+		}
+
+    add_header       Vary Accept-Encoding;
+    add_header       Cache-Control public;
+
+    # Block certain file access
+    # Ideas from this post https://serverfault.com/a/1069003
+    location ~\.(md|git|txt|json|log)|(Procfile|README|LICENSE)+.*?$ {
+      deny all;
+      return 404;
+    }
+
+    # Generated site at "public" root dir
+    location / {
+      root           /app/;
+      limit_except GET HEAD POST { deny all; }
+      # expires        <%= ENV['DEFAULT_TTL'] || 3600 %>s;
+      expires max;
+      try_files      $uri $uri/ $uri.html index.html;
+    }
+  }
+}
