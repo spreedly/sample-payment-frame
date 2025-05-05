@@ -1,18 +1,18 @@
 {
   "name": "sample-payment-frame",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sample app showing how to use the Spreedly iFrame payment form",
   "repository": {
     "type": "git",
     "url": "https://github.com/spreedly/sample-payment-frame.git"
   },
   "scripts": {
-    "start": "static ."
+    "start": "http-server -p 8082"
   },
   "engines": {
-    "node": "^16.15.0"
+    "node": "20.10.0"
   },
   "dependencies": {
-    "node-static": "^0.7.11"
+    "http-server": "^14.1.1"
   }
 }
