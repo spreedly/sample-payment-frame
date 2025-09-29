@@ -8,7 +8,7 @@
    sha256-ZGVjYWZjZDlkYTE3YzQ4ZWNjMDM4Y2QxYjBmYzhjY2M0NjQzY2I3ZTE1ODNhZTkxZjI3ZGVhNzBkYWU2Cg== -->
   <title>Spreedly Sample iFrame Payment Page</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
-  <script src="https://core.spreedly.com/iframe/iframe-v1.min.js"></script>
+  <script src="https://core.spreedly.com/iframe/iframe-v1.min.js" integrity="sha384-v6aMtCf9L2EY2Rck5iotnBUZQ5P5SY6qXLicfZslXcqCHdD4JHtpx3cnnxoBmoI8" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -21,43 +21,46 @@
       <h2>Name</h2>
       <div class="spf-field spf-field-fname">
         <label class="internal" for="spf-fname">First Name</label>
-        <input type="text" class="spf-input-text" id="first_name">
+        <input type="text" class="spf-input-text" id="first_name" value="Firstname">
       </div>
       <div class="spf-field spf-field-lname">
         <label class="internal" for="spf-lname">Last Name</label>
-        <input type="text" class="spf-input-text" id="last_name">
+        <input type="text" class="spf-input-text" id="last_name" value="Lastname">
+      </div>
+      <div class="spf-field">
+        <label class="internal" for="spf-email">Email</label>
+        <input type="email" class="spf-input-text" id="email" value="approve@forter.com">
       </div>
     </fieldset>
 
     <!-- If you want billing address, uncomment -->
-    <!--
+    
     <fieldset class="spf-fs-address">
       <h2>Billing Address</h2>
       <div class="spf-field spf-field-street">
         <label class="internal" for="spf-street">Street Address</label>
-        <input type="text" class="spf-input-text" id="address1">
+        <input type="text" class="spf-input-text" id="address1" value="123 Fake St">
       </div>
       <div class="spf-field spf-field-street-2">
         <input type="text" class="spf-input-text" id="address2">
       </div>
       <div class="spf-field spf-field-city">
         <label class="internal" for="spf-city">City</label>
-        <input type="text" class="spf-input-text" id="city">
+        <input type="text" class="spf-input-text" id="city" value="Durham">
       </div>
       <div class="spf-field spf-field-state">
         <label class="internal" for="spf-state">State</label>
-        <input type="text" class="spf-input-text" id="state">
+        <input type="text" class="spf-input-text" id="state" value="NC">
       </div>
       <div class="spf-field spf-field-postcode">
         <label class="internal" for="spf-postcode">Zip Code</label>
-        <input type="text" class="spf-input-text" id="zip">
+        <input type="text" class="spf-input-text" id="zip" value="27701">
       </div>
       <div class="spf-field spf-field-country">
         <label class="internal" for="spf-country">Country</label>
-        <input type="text" class="spf-input-text" id="country">
+        <input type="text" class="spf-input-text" id="country" value="US">
       </div>
     </fieldset>
-    -->
 
     <fieldset class="spf-fs-cc">
       <h2>Payment Details</h2>

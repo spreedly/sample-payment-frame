@@ -1,4 +1,4 @@
-Spreedly.init('TbWAYgG7qaagGBh7hPjXQxS4DM4', {numberEl: 'spreedly-number-test', cvvEl: 'spreedly-cvv-test'});
+Spreedly.init('2XK1SNWF2R9H9A7HXW8ZZ2KEND', {numberEl: 'spreedly-number-test', cvvEl: 'spreedly-cvv-test', fraud: true});
 
 Spreedly.on('paymentMethod', function(token, pmData) {
   var tokenField = document.getElementById("payment_method_token");
@@ -53,6 +53,10 @@ Spreedly.on('fieldEvent', function(name, event, activeElement, inputData) {
   }
 });
 
+Spreedly.on('fraud:token', function(token) {
+  console.log('fraud token:', token);
+});
+
 const formEl = document.getElementById('submit-payment');
 formEl.addEventListener('click', submitPaymentForm);
 
@@ -63,7 +67,7 @@ function submitPaymentForm(e) {
   // master form *to* the payment frame form. Add the following if
   // you're displaying the address:
   // ['address1', 'address2', 'city', 'state', 'zip', 'country']
-  var paymentMethodFields = ['first_name', 'last_name', 'month', 'year']
+  const paymentMethodFields = ['first_name', 'last_name', 'month', 'year', 'address1', 'address2', 'city', 'state', 'zip', 'country', 'email'];
   options = {};
   for(var i = 0; i < paymentMethodFields.length; i++) {
     var field = paymentMethodFields[i];
